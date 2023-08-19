@@ -17,6 +17,7 @@ public class TestModulePackage implements ReactPackage {
   public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
     List<NativeModule> modules = new ArrayList<>();
     modules.add(new TestModuleModule(reactContext));
+    modules.add(new CalendarModule(reactContext));
     return modules;
   }
 

@@ -1,18 +1,35 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-test-module';
+import { StyleSheet, View, Button } from 'react-native';
+import { createCalendarEvent, multiply } from 'react-native-test-module';
 
-export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+const Multiply = () => {
+  const [result, setResult] = React.useState(2);
 
   return (
+    <Button
+      title={result + ''}
+      onPress={() => {
+        multiply(result, 1.2).then(setResult);
+      }}
+    />
+  );
+};
+
+const Calendar = () => {
+  return (
+    <Button
+      title="create Calendar event"
+      onPress={() => createCalendarEvent('event name', 'event location')}
+    />
+  );
+};
+
+export default function App() {
+  return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Multiply />
+      <Calendar />
     </View>
   );
 }

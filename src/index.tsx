@@ -1,22 +1,9 @@
-import { NativeModules, Platform } from 'react-native';
-
-const LINKING_ERROR =
-  `The package 'react-native-test-module' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
-
-const TestModule = NativeModules.TestModule
-  ? NativeModules.TestModule
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+import { NativeModules } from 'react-native';
 
 export function multiply(a: number, b: number): Promise<number> {
-  return TestModule.multiply(a, b);
+  return NativeModules.TestModule.multiply(a, b);
 }
+
+export const createCalendarEvent = (name: string, location: string) => {
+  return NativeModules.CalendarModule.createCalendarEvent(name, location);
+};
