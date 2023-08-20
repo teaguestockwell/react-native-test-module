@@ -5,6 +5,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
+import com.facebook.react.bridge.Promise;
 
 import android.util.Log;
 
@@ -22,7 +23,7 @@ public class CalendarModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void createCalendarEvent(String name, String location) {
-    Log.d(this.getName(), "create event " + name + " " + location);
+  public void createCalendarEvent(String name, String location, Promise promise) {
+    promise.resolve("create event " + name + " " + location);
   }
 }

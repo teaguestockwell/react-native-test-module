@@ -20,7 +20,9 @@ const Calendar = () => {
   return (
     <Button
       title="create Calendar event"
-      onPress={() => createCalendarEvent('event name', 'event location')}
+      onPress={() =>
+        createCalendarEvent('event name', 'event location').then(console.log)
+      }
     />
   );
 };
